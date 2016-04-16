@@ -1,0 +1,357 @@
+@import "mathsass/dist/math";
+
+@mixin transition($target : all,$time : 0.3s) {
+  -moz-transition: $target $time ease;
+  -webkit-transition: $target $time ease;
+  -ms-transition: $target $time ease;
+  -o-transition: $target $time ease;
+  transition: $target $time ease;
+}
+
+@mixin scaleY($scale) {
+  -moz-transform: scaleY($scale);
+  -webkit-transform: scaleY($scale);
+  -ms-transform: scaleY($scale);
+  -o-transform: scaleY($scale);
+  transform: scaleY($scale);
+}
+
+@mixin transform-direction($direction : top) {
+  -webkit-transform-origin: $direction;
+  -moz-transform-origin: $direction;
+  -ms-transform-origin: $direction;
+  -o-transform-origin: $direction;
+  transform-origin: $direction;
+}
+
+@mixin shadow($color : rgba(0, 0, 0, 0.22),$horizontal : 0px,$vertical : 2px,$spread : 10px,$darken : 0px,$important : false) {
+  -webkit-box-shadow: $color $horizontal $vertical $spread $darken;
+  -moz-box-shadow: $color $horizontal $vertical $spread $darken;
+  -ms-box-shadow: $color $horizontal $vertical $spread $darken;
+  -o-box-shadow: $color $horizontal $vertical $spread $darken;
+  box-shadow: $color $horizontal $vertical $spread $darken;
+}
+
+@mixin shadowNormal($value) {
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+  -ms-box-shadow: $value;
+  -o-box-shadow: $value;
+  box-shadow: $value;
+}
+
+@mixin round-corners($value : 5px) {
+  -moz-border-radius: $value;
+  -webkit-border-radius: $value;
+  -ms-border-radius: $value;
+  -o-border-radius: $value;
+  border-radius: $value;
+}
+
+@mixin text-shadow($color : rgba(0, 0, 0, 0.42),$spread : 5px,$vertical : 0px,$horizontal : 0px) {
+  text-shadow: $color $horizontal $vertical $spread;
+  -webkit-text-shadow: $color $horizontal $vertical $spread;
+  -moz-text-shadow: $color $horizontal $vertical $spread;
+  -ms-text-shadow: $color $horizontal $vertical $spread;
+  -o-text-shadow: $color $horizontal $vertical $spread;
+}
+
+@mixin transform($transform_value) {
+  transform: $transform_value;
+  -webkit-transform: $transform_value;
+  -moz-transform: $transform_value;
+  -ms-transform: $transform_value;
+  -o-transform: $transform_value;
+}
+
+@mixin transform-origin($transform_value) {
+  transform-origin: $transform_value;
+  -webkit-transform-origin: $transform_value;
+  -moz-transform-origin: $transform_value;
+  -ms-transform-origin: $transform_value;
+  -o-transform-origin: $transform_value;
+}
+
+@mixin large-screen {
+  @media only screen and (max-width: 60em) {
+    @content;
+  }
+}
+
+@mixin medium-screen {
+  @media only screen and (max-width: 40em) {
+    @content;
+  }
+}
+
+@mixin small-screen {
+  @media only screen and (max-width: 30em) {
+    @content;
+  }
+}
+
+@mixin keyframes($animation-name) {
+  @-webkit-keyframes #{$animation-name} {
+    @content;
+  }
+  @-moz-keyframes #{$animation-name} {
+    @content;
+  }
+  @-ms-keyframes #{$animation-name} {
+    @content;
+  }
+  @-o-keyframes #{$animation-name} {
+    @content;
+  }
+  @keyframes #{$animation-name} {
+    @content;
+  }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};
+}
+
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity=$opacity-ie); //IE8
+}
+
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 64.375em) {
+      @content;
+    }
+  } @else if $point == medium {
+    @media (min-width: 50em) {
+      @content;
+    }
+  } @else if $point == small {
+    @media (min-width: 37.5em) {
+      @content;
+    }
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: "";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+@mixin placeholder-color($clr : #000){
+  &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+    color:    $clr;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    $clr;
+    opacity:  1;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    $clr;
+    opacity:  1;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color:    $clr;
+  }
+}
+
+@mixin appearance($appearance){
+  -moz-appearance:    $appearance;
+  -webkit-appearance: $appearance;
+  appearance: $appearance;
+}
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model; // Safari <= 5
+  -moz-box-sizing: $box-model; // Firefox <= 19
+  box-sizing: $box-model;
+}
+
+@mixin center-block {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin abs-pos($top: auto, $right: auto, $bottom: auto, $left: auto) {
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+  position: absolute;
+}
+
+@mixin margin($margin : 0px) {
+  margin: $margin;
+}
+
+@mixin padding($padding : 0px) {
+  padding: $padding;
+}
+
+@mixin border($border-width : 1px,$border-style: solid,$border-color: #000) {
+  border: $border-width $border-style $border-color;
+}
+
+@mixin scrollbar($class : scrollbar,$size: .5em, $primary : slategray , $secondary: lighten($primary, 25%)) {
+  .#{$class}::-webkit-scrollbar {
+    width: $size;
+    height: $size;
+  }
+
+  .#{$class}::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  .#{$class}::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@mixin colorCats($class : scrollbar,$clr : #000) {
+  $bg_opcity: 0.8;
+
+  .#{$class} {
+
+    .cat-block-hme-container {
+      border-color: $clr;
+    }
+
+    .cat-title * {
+      border-color: $clr;
+      color: $clr;
+
+      h3 {
+        background: $clr !important;
+      }
+    }
+
+    .main-cat-page .cat-title h3 {
+      background: $clr !important;
+    }
+
+    .content {
+      background: rgba($clr, $bg_opcity);
+    }
+
+    .block-items-controls {
+      i:hover {
+        color: rgba($clr, $bg_opcity);
+      }
+    }
+
+    @include device(phablet) {
+      .slides .cat-title {
+        background: $clr !important;
+        color: #FFffff !important;
+        i {
+          color: #FFffff !important;
+        }
+        span a {
+          color: #FFffff !important;
+        }
+      }
+    }
+  }
+
+  @include device(phablet) {
+    .nav-main a.#{$class} {
+      background: $clr;
+      * {
+        color: #FFffff;
+      }
+    }
+  }
+
+  /*.breadcrumbs li.#{$class} {
+    a {
+      background: $clr;
+    }
+
+    a:after{
+      border-left-color: $clr;
+    }
+
+    a:before{
+      border-left-color: $clr;
+    }
+  }*/
+
+}
+
+@mixin device($point) {
+  @if $point == desktop {
+    @media (min-width: 70em) {
+      @content;
+    }
+  } @else if $point == laptop {
+    @media /*(min-width: 64em) and */
+    (max-width: 70em) {
+      @content;
+    }
+  } @else if $point == tablet {
+    @media /*(min-width: 50em) and */
+    (max-width: 64em) {
+      @content;
+    }
+  } @else if $point == phablet {
+    @media /*(min-width: 37.5em) and */
+    (max-width: 50em) {
+      @content;
+    }
+  } @else if $point == phone {
+    @media (max-width: 37.5em) {
+      @content;
+    }
+  } @else if $point == only-laptop {
+    @media (min-width: 64em) and(max-width: 70em) {
+      @content;
+    }
+  } @else if $point == only-tablet {
+    @media (min-width: 50em) and(max-width: 64em) {
+      @content;
+    }
+  } @else if $point == only-phablet {
+    @media (min-width: 37.5em) and(max-width: 50em) {
+      @content;
+    }
+  } @else if $point == printer {
+    @media print {
+      @content;
+    }
+  }
+}
+
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin stroke($width, $color) {
+  -webkit-text-stroke: $width $color;
+  -moz-text-stroke: $width $color;
+  -ms-text-stroke: $width $color;
+  -o-text-stroke: $width $color;
+  text-stroke: $width $color;
+}
