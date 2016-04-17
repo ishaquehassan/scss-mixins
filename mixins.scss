@@ -13,11 +13,11 @@
   -webkit-transform: scaleY($scale);
   -ms-transform: scaleY($scale);
   -o-transform: scaleY($scale);
-  transform: scaleY($scale);
+  transform: scaleY($scale); 
 }
 
 @mixin transform-direction($direction : top) {
-  -webkit-transform-origin: $direction;
+  -webkit-transform-origin: $direction; 
   -moz-transform-origin: $direction;
   -ms-transform-origin: $direction;
   -o-transform-origin: $direction;
