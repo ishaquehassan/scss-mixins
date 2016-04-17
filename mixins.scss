@@ -162,7 +162,7 @@ $base-font-size: 16px !default;
 ///     box-sizing: border-box;
 ///   }
 @mixin box-sizing($type) {
-    @include prefix(box-sizing, $type, 'webkit' 'moz' 'ms' 'o'); 
+    @include prefix(box-sizing, $type, 'webkit' 'moz' 'ms' 'o');
 }
 
 
@@ -711,16 +711,28 @@ $base-font-size: 16px !default;
   @include prefix(transition, $target $time $timing-function, 'webkit' 'moz' 'ms' 'o');
 }
 
+
+/// Transform Direction (transform-origin) helper
+/// @param {Direction / Origin} $direction [top] - Direction / Origin
+/// @example scss - Usage
+///   .foo {
+///     @include transform-direction(left);
+///   }
+/// @example css - Result
+///   .foo {
+///     -webkit-transform-origin: left;
+///     -moz-transform-origin: left;
+///     -ms-transform-origin: left;
+///     -o-transform-origin: left;
+///     transition: all 0.3s ease-in;
+///   }
+
 @mixin transform-direction($direction : top) {
   @include prefix(transform-origin,$direction, 'webkit' 'moz' 'ms' 'o');
 }
 
-@mixin shadow($color : rgba(0, 0, 0, 0.22),$horizontal : 0px,$vertical : 2px,$spread : 10px,$darken : 0px,$important : false) {
-  -webkit-box-shadow: $color $horizontal $vertical $spread $darken;
-  -moz-box-shadow: $color $horizontal $vertical $spread $darken;
-  -ms-box-shadow: $color $horizontal $vertical $spread $darken;
-  -o-box-shadow: $color $horizontal $vertical $spread $darken;
-  box-shadow: $color $horizontal $vertical $spread $darken;
+@mixin shadow($color : rgba(0, 0, 0, 0.22),$horizontal : 0px,$vertical : 2px,$spread : 10px,$darken : 0px,$important : null) { 
+  @include prefix(box-shadow,$color $horizontal $vertical $spread $darken $important,'webkit' 'moz' 'ms' 'o');
 }
 
 @mixin shadowNormal($value) {
@@ -737,14 +749,6 @@ $base-font-size: 16px !default;
   -ms-border-radius: $value;
   -o-border-radius: $value;
   border-radius: $value;
-}
-
-@mixin text-shadow($color : rgba(0, 0, 0, 0.42),$spread : 5px,$vertical : 0px,$horizontal : 0px) {
-  text-shadow: $color $horizontal $vertical $spread;
-  -webkit-text-shadow: $color $horizontal $vertical $spread;
-  -moz-text-shadow: $color $horizontal $vertical $spread;
-  -ms-text-shadow: $color $horizontal $vertical $spread;
-  -o-text-shadow: $color $horizontal $vertical $spread;
 }
 
 @mixin transform($transform_value) {
@@ -861,12 +865,6 @@ $base-font-size: 16px !default;
   -moz-appearance:    $appearance;
   -webkit-appearance: $appearance;
   appearance: $appearance;
-}
-
-@mixin box-sizing($box-model) {
-  -webkit-box-sizing: $box-model; // Safari <= 5
-  -moz-box-sizing: $box-model; // Firefox <= 19
-  box-sizing: $box-model;
 }
 
 @mixin center-block {
