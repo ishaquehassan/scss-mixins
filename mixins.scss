@@ -212,89 +212,31 @@
 }
 
 @mixin scrollbar($class : scrollbar,$size: .5em, $primary : slategray , $secondary: lighten($primary, 25%)) {
-  .#{$class}::-webkit-scrollbar {
+  &::-webkit-scrollbar {
     width: $size;
     height: $size;
   }
 
-  .#{$class}::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: transparent;
   }
 
-  .#{$class}::-webkit-scrollbar-track {
+  &::-webkit-scrollbar-track {
     background: transparent;
   }
-}
-
-@mixin colorCats($class : scrollbar,$clr : #000) {
-  $bg_opcity: 0.8;
-
-  .#{$class} {
-
-    .cat-block-hme-container {
-      border-color: $clr;
-    }
-
-    .cat-title * {
-      border-color: $clr;
-      color: $clr;
-
-      h3 {
-        background: $clr !important;
-      }
-    }
-
-    .main-cat-page .cat-title h3 {
-      background: $clr !important;
-    }
-
-    .content {
-      background: rgba($clr, $bg_opcity);
-    }
-
-    .block-items-controls {
-      i:hover {
-        color: rgba($clr, $bg_opcity);
-      }
-    }
-
-    @include device(phablet) {
-      .slides .cat-title {
-        background: $clr !important;
-        color: #FFffff !important;
-        i {
-          color: #FFffff !important;
-        }
-        span a {
-          color: #FFffff !important;
-        }
-      }
-    }
+ 
+  &::-moz-scrollbar {
+    width: $size;
+    height: $size;
   }
 
-  @include device(phablet) {
-    .nav-main a.#{$class} {
-      background: $clr;
-      * {
-        color: #FFffff;
-      }
-    }
+  &::-moz-scrollbar-thumb {
+    background: transparent;
   }
 
-  /*.breadcrumbs li.#{$class} {
-    a {
-      background: $clr;
-    }
-
-    a:after{
-      border-left-color: $clr;
-    }
-
-    a:before{
-      border-left-color: $clr;
-    }
-  }*/
-
+  &::-moz-scrollbar-track {
+    background: transparent;
+  }
 }
 
 @mixin device($point) {
