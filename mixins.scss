@@ -355,3 +355,9 @@
   -o-text-stroke: $width $color;
   text-stroke: $width $color;
 }
+
+@mixin postionAbs($x : 0px, $y : 0px){
+  position : absolute;
+  top: $y;
+  right: $x;
+}
