@@ -844,7 +844,7 @@ $base-font-size: 16px !default;
   }
 }
 
-@mixin placeholder-color($clr : #000){
+@mixin placeholder-color($clr : #000){ 
   &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    $clr;
   }
@@ -862,9 +862,7 @@ $base-font-size: 16px !default;
 }
 
 @mixin appearance($appearance){
-  -moz-appearance:    $appearance;
-  -webkit-appearance: $appearance;
-  appearance: $appearance;
+  @include prefix(appearance,$appearance,"webkit" "moz" "ms" "o");
 }
 
 @mixin center-block {
@@ -900,18 +898,18 @@ $base-font-size: 16px !default;
   border: $border-width $border-style $border-color;
 }
 
-@mixin scrollbar($class : scrollbar,$size: .5em, $primary : slategray , $secondary: lighten($primary, 25%)) {
+@mixin scrollbar($size: 1em, $primary : slategray , $secondary: lighten($primary, 25%)) {
   &::-webkit-scrollbar {
     width: $size;
     height: $size;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: transparent;
+    background: $secondary;
   }
 
   &::-webkit-scrollbar-track {
-    background: transparent;
+    background: $primary;
   }
  
   &::-moz-scrollbar {
@@ -920,11 +918,11 @@ $base-font-size: 16px !default;
   }
 
   &::-moz-scrollbar-thumb {
-    background: transparent;
+    background: $secondary;
   }
 
   &::-moz-scrollbar-track {
-    background: transparent;
+    background: $primary;
   }
 }
 
